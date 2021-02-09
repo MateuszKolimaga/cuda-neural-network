@@ -7,13 +7,13 @@
 #include <cuda.h>
 #include <stdio.h>
 
-const int n_x = 784; //Rozmiar badanych obrazow
-const int n_h = 7;   //Ilosc neuronow w warstwie ukrutej
+const int n_x = 784; //Rozmiar warstwy wejsciowej, jednoczesnie rozmiar badanych obrazow (28x28)
+const int n_h = 7;   //Ilosc neuronow w warstwie ukrytej
 const int n_y = 1;   //Ilosc neuronow na wyjsciu sieci
 float learning_rate = 0.075; //Predkosc uczenia
 const int train_samples = 209; //Ilosc obrazow przechodzacych przez siec w fazie treningu
 const int test_samples = 50;   //Ilosc obrazow przechodzacych przez siec w fazie testu
-int num_samples = train_samples; //Aktualna ilosc obrazow przechodzacych przes siec
+int num_samples = train_samples; //Aktualna ilosc obrazow przechodzacych przez siec
 const int iter_num = 100;  //Ilosc przejsc zestawu treningowego przez siec
 const int print_freq = 20;  //Czestotliwosc wyswietlania wartosci funkcji kosztu
 
