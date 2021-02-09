@@ -35,10 +35,10 @@ struct cache_data {
 	double** A;									//Wynik Aktywacji
 	double** OUT;					 				//Poprzedni wynik po max poolingu, jednoczescie wyjscie warstwy sieci
 	double** kernel;				 			        //Filtr
-	double** dW;									//Gradient kosztu wzgl�dem kerneli
-	double** dA;									//Gradient kosztu wzgl�dem warstwy
-	double** dAprev;				    				//Gradient kosztu wzgl�dem wyj�cia warstwy n_l - 1
-	double** dZ;					    				//Gradient kosztu wzgl�dem wyniku konwolucji
+	double** dW;									//Gradient kosztu wzgledem kerneli
+	double** dA;									//Gradient kosztu wzgledem warstwy
+	double** dAprev;				    				//Gradient kosztu wzgledem wyjscia warstwy n_l - 1
+	double** dZ;					    				//Gradient kosztu wzgledem wyniku konwolucji
 };
 
 
@@ -48,7 +48,7 @@ void show_results(layer_param, cache_data&);	//Wyswietla zawartosc koncowych i p
 void brief_inf(layer_param, double**);						//Krotka informacja o wyjsciu sieci
 void forw_prop(layer_param, cache_data&);      //Najwazniejsza funkcja (konwolucja, aktywacja, maxpooling)
 void simple_del(double**&, int);						        //Usuwanie pamieci
-void update_param(layer_param&, layer_param&);                  			//Ustawianie nowych parametr�w warstwy
+void update_param(layer_param&, layer_param&);                  			//Ustawianie nowych parametrow warstwy
 void prep_new_arrays(layer_param, cache_data&);      //Tworzenie nowych tablic wynikowych
 void prep_gradients(layer_param, cache_data&);       //Tworzenie gradientow (narazie losowo, bez funkcji kosztu)
 void show_gradients(layer_param, cache_data&);
