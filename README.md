@@ -1,1 +1,1 @@
-Dataset zawiera 259 obrazow (209 - zestaw treningowy, 50 - zestaw testowy) obrazow (28x28) odrecznie napisanych cyfr, w formie plikow txt. Zadaniem sieci jest wykrywanie na obrazach cyfry 1.
+Dataset zawiera 259 obrazow (209 - zestaw treningowy, 50 - zestaw testowy) o rozmiarze 28x28, w formie plików txt. Na obrazach widnieją odrecznie napisane cyfry. Zadaniem sieci jest wykrywanie cyfry 1.
