@@ -52,7 +52,7 @@ struct param_data {
     float WT2[n_h][n_y];
 };
 
-//Funkcje obsługujące struktury
+//Funkcje obslugujace struktury
 void load_data(param_data&, grad_data&);
 void delete_data(param_data&, grad_data&);
 
@@ -100,7 +100,7 @@ void relu(param_data &parameters) {
     }
 }
 
-//Funkcja wyznaczajaca dZ1 za pomocą pochodnej z nieliniowej funkcji aktywacji (ReLu) oraz dA1
+//Funkcja wyznaczajaca dZ1 za pomoca pochodnej z nieliniowej funkcji aktywacji (ReLu) oraz dA1
 void relu_backward(param_data &parameters, grad_data &grads) {
     int rows = n_h;
     int cols = num_samples;
@@ -191,7 +191,7 @@ void linear_forward_sigm(param_data &parameters) {
     }
 }
 
-//Funkcja wybierająca tryb aktywacji
+//Funkcja wybierajaca tryb aktywacji
 void linear_activation_forward(param_data &parameters, std::string activation) { 
     if (activation.compare("sigmoid") == 0) {
         linear_forward_sigm(parameters);
@@ -286,7 +286,7 @@ void linear_backward_relu(param_data &parameters, grad_data &grads) {
 
     // for (int i_da0 = 0; i_da0 < rows_da0; i_da0++) {
     //     for (int j_da0 = 0; j_da0 < cols_da0; j_da0++) {
-    //         for (int j_wt1 = 0; j_wt1 < cols_wt1; j_wt1++) {
+    //         for (int j_wt1 = 0; j_wt1 < rows_dz1; j_wt1++) {
     //             grads.dA0[i_da0][j_da0] += parameters.WT1[i_da0][j_wt1] * grads.dZ1[j_wt1][j_da0];
     //         }
     //     }
@@ -380,10 +380,10 @@ void update_parameters(param_data &parameters, grad_data &grads) {
 }
 
 //Glowna funkcja przechodzaca przez siec
-void two_layer_model(param_data &parameters, grad_data &grads, int num_iterations) {
+void two_layer_model(param_data &parameters, grad_data &grads) {
     float cost = 0;
 
-    for (int i = 0; i < num_iterations + 1; i++) {
+    for (int i = 0; i < iter_num + 1; i++) {
         delete_data(parameters, grads);
 
         linear_activation_forward(parameters, "relu");
@@ -402,8 +402,6 @@ void two_layer_model(param_data &parameters, grad_data &grads, int num_iteration
 
         if (i % print_freq == 0) {
             std::cout << "Koszt po iteracji " << i << ": " << cost << "\n\n";
-            // for(int j = 10; j < 15; j++) std::cout << "(" << parameters.A2[0][j] << "," << parameters.train_y[0][j] << ")  ";
-            // std::cout << "\n\n\n"; 
         }
     }
 
@@ -417,8 +415,8 @@ void accuracy_check_train(param_data &parameters){
     linear_activation_forward(parameters, "sigmoid");
 
     for (int j = 0; j < train_samples; j++) {
-            if(parameters.A2[0][j] >= 0.5 and parameters.train_y[0][j] == 1) accuracy += 1;
-            else if(parameters.A2[0][j] < 0.5 and parameters.train_y[0][j] == 0) accuracy += 1;
+            if(parameters.A2[0][j] >= 0.5 && parameters.train_y[0][j] == 1) accuracy += 1;
+            else if(parameters.A2[0][j] < 0.5 && parameters.train_y[0][j] == 0) accuracy += 1;
     }
 
     std::cout << "Accuracy (training): " << accuracy / train_samples << "\n";
@@ -430,8 +428,8 @@ void accuracy_check_train(param_data &parameters){
     linear_activation_forward(parameters, "sigmoid");
 
     for (int j = 0; j < test_samples; j++) {
-        if(parameters.A2[0][j] >= 0.5 and parameters.test_y[0][j] == 1) accuracy += 1;
-        else if(parameters.A2[0][j] < 0.5 and parameters.test_y[0][j] == 0) accuracy += 1;
+        if(parameters.A2[0][j] >= 0.5 && parameters.test_y[0][j] == 1) accuracy += 1;
+        else if(parameters.A2[0][j] < 0.5 && parameters.test_y[0][j] == 0) accuracy += 1;
     }
 
     std::cout << "Accuracy (test): " << accuracy / test_samples << "\n";
@@ -444,7 +442,7 @@ int main() {
 
     load_data(parameters, grads);
 
-    two_layer_model(parameters, grads, iter_num);
+    two_layer_model(parameters, grads);
 
     accuracy_check_train(parameters);
 
